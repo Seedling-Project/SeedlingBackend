@@ -10,9 +10,9 @@ have tailored help. Through this project, the seedlings
 at this school hope to grow into towering trees. 
 
 The central idea differs from CommunityALI or the
-MJC Website because this website is more verbose 
+MJC site because this site is more verbose 
 and focuses on a connection between the students 
 and the school. As such, a "bloggy" type of model
-has been adapted into the formulation of the website.
+has been adapted into the formulation of the site.
 It will also be actively maintained by students
-and have a minimal bloat and minimal bureaucratic approach. 
+and have minimal bloat and minimal bureaucratic approach. 
