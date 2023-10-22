@@ -1,9 +1,9 @@
-/* 
+/*
  *
  * TODO: Configure your template paths
  * Add the paths to all of your template files in your tailwind.config.js file.
  *
- * Reference: 
+ * Reference:
  * https://tailwindcss.com/docs/installation
  * https://tailwindcss.com/docs/configuration
  * https://www.preline.co/docs/index.html
@@ -22,5 +22,3 @@ module.exports = {
       require('preline/plugin'),
   ],
 }
-
-
