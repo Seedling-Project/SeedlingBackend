@@ -1,20 +1,23 @@
-[tool.black]
-    py36 = true # Black will format with Python 3.x syntax based on this setting.
-    include = '\.pyi?$'
-    exclude = '''
-    /(
-        \.git
-      | \.hg
-      | \.mypy_cache
-      | \.tox
-      | \.venv
-      | _build
-      | buck-out
-      | build
-      | dist
 
-      # The following are specific to Black, you probably don't want those.
-      | blib2to3
-      | tests/data
-    )/
-    '''
+# https://black.readthedocs.io/en/stable/usage_and_configuration
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+
+# https://pycqa.github.io/isort/docs/configuration/options.html 
+
+[tool.isort]
+profile = "django"
+combine_as_imports = true
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+known_first_party = ["config"]
+
+# https://www.djlint.com/docs/linter/
+
+[tool.djlint]
+profile = "django"
+ignore = "H031"
