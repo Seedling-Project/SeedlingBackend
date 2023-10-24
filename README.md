@@ -17,6 +17,9 @@ has been adapted into the formulation of the site.
 It will also be actively maintained by students
 and have minimal bloat and minimal bureaucratic approach.
 
+## Documentation Link
+https://github.com/ImmaculateDivinity/Seedlingmkdocs.git
+
 ## Github Contributions
 At this moment, there are two branches: main and frontend.
 Clone the repository.
