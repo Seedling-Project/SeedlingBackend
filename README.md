@@ -16,3 +16,13 @@ and the school. As such, a "bloggy" type of model
 has been adapted into the formulation of the site.
 It will also be actively maintained by students
 and have minimal bloat and minimal bureaucratic approach.
+
+## Github Contributions
+At this moment, there are two branches: main and frontend.
+Clone the repository.
+Set the main to your upstream as such:
+git branch --set-upstream-to=origin/main <variable_name>.
+the <variable_name> can be found with the git branch
+command.
+Now, using your forked/cloned repository, make pull requests
+if you want to contribute to the project.
