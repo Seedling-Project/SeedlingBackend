@@ -17,6 +17,9 @@ has been adapted into the formulation of the site.
 It will also be actively maintained by students
 and have minimal bloat and minimal bureaucratic approach.
 
+## Linting Status
+[![GitHub Super-Linter](https://github.com/ImmaculateDivinity/SeedlingEducation.git/actions/workflows/superlinter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ## Documentation Link
 https://github.com/ImmaculateDivinity/Seedlingmkdocs.git
 
