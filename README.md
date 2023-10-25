@@ -30,17 +30,17 @@ command.
 
 ### Setting Upstream:
 
-Setting an upstream branch establishes a link between your 
+Setting an upstream branch establishes a link between your
 current branch and a specified remote branch.
-This is useful when you want to track changes from a 
+This is useful when you want to track changes from a
 specific remote branch in your current branch
-The upstream setting merely establishes a default remote branch 
-that your local branch will interact with when you run commands 
+The upstream setting merely establishes a default remote branch
+that your local branch will interact with when you run commands
 like git pull or git merge.
 
 ### Pulling:
 
-git pull: is a command that fetches the latest changes from the remote 
+git pull: is a command that fetches the latest changes from the remote
 repository and merges them into your current branch.
 It essentially combines git fetch and git merge into a single
 command.
