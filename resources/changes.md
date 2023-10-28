@@ -32,11 +32,18 @@
 
 ## hotfix-branch
 
+### Commands
+
+```npx mrm@2 lint-staged``` - supposed to install husky and lint-staged and have preconfigured hooks which I can customize to target js, jsx, html, and css
+
 #### Steps taken so far:
 
 1. Setting up prettier
+2. Testing if husky and lint-staged work
+3. Refactoring
 
 #### TODO:
 
 1. Finish setting up prettier with either lint-staged + husky or stick it out with pre-commit
-2. Test solution
+3. Continue testing husky and lint-staged
+4. Link react and django and test for functionality
