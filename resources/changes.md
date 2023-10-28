@@ -42,8 +42,5 @@
 2. Testing if husky and lint-staged work
 3. Refactoring
    - Goal is to keep all the frontend stuff in one folder, there will be a max of two package.json files: one in root that has CI dependencies and one in frontend with frontend dependencies
-4. Finish connecting react and django, now frontend devs are all set up to go crazy in the frontend directory
-
-#### TODO:
-
-- fml, prettier does not seem like it is working. I think its because the pre-commit file is in two locations and only the one in .git is being called
+4. Finish connecting react and django, now frontend devs are all set up in the frontend directory
+5. Decided to discard husky and lint-staged for GitHub Actions solutions
