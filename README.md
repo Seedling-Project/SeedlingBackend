@@ -1,3 +1,5 @@
+[![GitHub Super-Linter](https://github.com/ImmaculateDivinity/SeedlingEducation/actions/workflows/superlinter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 # SeedlingEducation
 
 This is an attempt at creating a web server project
