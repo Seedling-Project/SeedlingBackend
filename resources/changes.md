@@ -1,6 +1,6 @@
 # Temporary markdown file detailing some changes
 
-## feature-branch
+## feature-branch (Andry)
 
 ### Commands used
 
@@ -30,7 +30,7 @@
 6. Had to ignore some rules for the dJlinter to cheese the linter
 6. Passed
 
-## hotfix-branch
+## hotfix-branch (Andry)
 
 ### Commands
 
@@ -41,9 +41,9 @@
 1. Setting up prettier
 2. Testing if husky and lint-staged work
 3. Refactoring
+    - Goal is to keep all the frontend stuff in one folder, there will be a max of two package.json files: one in root that has CI dependencies and one in frontend with frontend dependencies
+4. Finish connecting react and django, now frontend devs are all set up to go crazy in the frontend directory
 
 #### TODO:
 
-1. Finish setting up prettier with either lint-staged + husky or stick it out with pre-commit
-3. Continue testing husky and lint-staged
-4. Link react and django and test for functionality
+- fml, prettier does not seem like it is working. I think its because the pre-commit file is in two locations and only the one in .git is being called
