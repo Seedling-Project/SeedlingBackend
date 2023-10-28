@@ -8,17 +8,15 @@
  * https://tailwindcss.com/docs/configuration
  * https://www.preline.co/docs/index.html
  *
-*/
+ */
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        'node_modules/preline/dist/*.js', // preline
-    ],
-    theme: {
-        extend: {},
-    },
-    plugins: [
-        require('preline/plugin'),
-    ],
-}
+  content: [
+    "node_modules/preline/dist/*.js", // preline
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require("preline/plugin")],
+};

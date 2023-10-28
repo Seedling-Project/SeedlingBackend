@@ -1,4 +1,5 @@
 # SeedlingEducation
+
 This is an attempt at creating a web server project
 for the benefit of Modesto Junior College
 and the communities affected by it. It serves as a
@@ -18,9 +19,11 @@ It will also be actively maintained by students
 and have minimal bloat and minimal bureaucratic approach.
 
 ## Documentation Link
+
 https://github.com/ImmaculateDivinity/Seedlingmkdocs.git
 
 ## Github Contributions
+
 At this moment, there are two branches: main and frontend.
 Clone the repository.
 Set the main to your upstream as such:

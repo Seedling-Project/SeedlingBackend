@@ -6,19 +6,19 @@
 
 #### For making a file with all the installed module dependencies
 
-```pip freeze > requirements.txt```
+`pip freeze > requirements.txt`
 
 #### For installing dependencies
 
-```pip install -r requirements.txt```
+`pip install -r requirements.txt`
 
-#### This will set up the hooks locally based on the configuration specified in ```.pre-commit-config.yaml``` file
+#### This will set up the hooks locally based on the configuration specified in `.pre-commit-config.yaml` file
 
-```pre-commit install```
+`pre-commit install`
 
 #### Check all files and identify and fix issues before making the initial commit
 
-```pre-commit run --all-files```
+`pre-commit run --all-files`
 
 #### Steps taken so far (bootleg changelog):
 
@@ -28,20 +28,20 @@
 4. Removed prettier formatting since django file structure with template html breaks code
 5. Testing
 6. Had to ignore some rules for the dJlinter to cheese the linter
-6. Passed
+7. Passed
 
 ## hotfix-branch (Andry)
 
 ### Commands
 
-```npx mrm@2 lint-staged``` - supposed to install husky and lint-staged and have preconfigured hooks which I can customize to target js, jsx, html, and css
+`npx mrm@2 lint-staged` - supposed to install husky and lint-staged and have preconfigured hooks which I can customize to target js, jsx, html, and css
 
 #### Steps taken so far:
 
 1. Setting up prettier
 2. Testing if husky and lint-staged work
 3. Refactoring
-    - Goal is to keep all the frontend stuff in one folder, there will be a max of two package.json files: one in root that has CI dependencies and one in frontend with frontend dependencies
+   - Goal is to keep all the frontend stuff in one folder, there will be a max of two package.json files: one in root that has CI dependencies and one in frontend with frontend dependencies
 4. Finish connecting react and django, now frontend devs are all set up to go crazy in the frontend directory
 
 #### TODO:

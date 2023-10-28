@@ -5,9 +5,6 @@
     "prettier": "^3.0.3"
   },
   "lint-staged": {
-    "*.{js,jsx,css,md}": "prettier --write"
-  },
-  "scripts": {
-    "prepare": "husky install"
+    "**.*": "prettier --write --ignore-unknown"
   }
 }

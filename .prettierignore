@@ -1,0 +1,60 @@
+# Ignore all files in the .gitignore file:
+.gitignore
+
+node_modules/
+jspm_packages/
+
+#db sql
+db.sqlite3
+
+# Python
+*.py[cod]
+*.$py.class
+*.py
+
+# VS Code
+*.vscode
+**/.vscode/
+
+# Python virtualenv
+.venv/
+.env/
+/.env
+
+# Django
+*.log
+*.pot
+*.pyc
+**/__pycache__
+
+# *media
+*.DS_Store
+
+# Backup Files
+*.bak
+
+# static files
+# TODO: add static files
+
+# react frontend
+
+# dependencies
+frontend/.pnp
+frontend/.pnp.js
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
