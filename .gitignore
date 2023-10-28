@@ -22,7 +22,8 @@ db.sqlite3
 *.log
 *.pot
 *.pyc
-*__pycache__
+*__pycache__/
+
 # *media
 *.DS_Store
 
@@ -31,3 +32,26 @@ db.sqlite3
 
 # static files
 # TODO: add static files
+
+# react frontend
+
+# dependencies
+frontend/.pnp
+frontend/.pnp.js
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
