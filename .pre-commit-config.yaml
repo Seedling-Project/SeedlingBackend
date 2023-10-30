@@ -16,12 +16,3 @@ repos:
     hooks:
       - id: isort
         name: isort (python)
-  - repo: https://github.com/pycqa/flake8
-    rev: 6.1.0
-    hooks:
-      - id: flake8
-  - repo: https://github.com/Riverside-Healthcare/djLint
-    rev: v1.32.0
-    hooks:
-      - id: djlint-reformat-django
-      - id: djlint-django
