@@ -44,3 +44,4 @@
    - Goal is to keep all the frontend stuff in one folder, there will be a max of two package.json files: one in root that has CI dependencies and one in frontend with frontend dependencies
 4. Finish connecting react and django, now frontend devs are all set up in the frontend directory
 5. Decided to discard husky and lint-staged for GitHub Actions solutions
+6. Final checks for this branch then open pr
