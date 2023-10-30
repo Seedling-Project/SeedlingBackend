@@ -1,12 +1,18 @@
 ---
 name: Super-Linter
 
-on: [push, pull_request]
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   super-lint:
     name: Lint code base
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true  # This option will cancel all in-progress jobs if any matrix job fails.
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -15,4 +21,7 @@ jobs:
         uses: github/super-linter@v4
         env:
           DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          FILTER_REGEX_EXCLUDE: .*\.md$
+          
+        continue-on-error: false  # This option will mark the workflow as failed if this step fails.
