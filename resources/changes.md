@@ -46,7 +46,7 @@
 5. Decided to discard husky and lint-staged for GitHub Actions solutions
 6. Final checks for this branch then open pr
 
-## addViteReact branch
+## addViteReact branch (Andry)
 
 ### Commands
 
@@ -57,6 +57,25 @@
 `npm install @vitejs/plugin-react --save-dev` - required package for vite build
 supposedly
 
+`vite build` - create dist dir which is the equivalent to build directory
+(requires vite command)
+
+`vite preview` - I think this is like the equivalent to `npm run dev` (the
+development server)
+
 ### Steps taken so far:
 
-1. Init React app using vite and testing
+1. init React app using Vite and testing
+2. Update dependencies for both back and front end (requirements.txt and
+   package.json)
+3. Change paths in django settings file to target new Vite files
+   - specifically, settings.py (modified static files dir variable as well as
+     static_files url and where program looks for templates)
+4. Testing Django + Vite/React connection
+5. Successfully confirmed connection
+
+### Potential TO-DO
+
+1. Vite was initialized with a linter that might conflict with superlinter.
+   Theoretically they are both using the ruleset defined by eslint so maybe
+   might not matter
