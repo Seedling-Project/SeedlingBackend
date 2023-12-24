@@ -2,23 +2,25 @@
 
 # SeedlingEducation
 
-This is an attempt at creating a web server project
-for the benefit of Modesto Junior College
-and the communities affected by it. It serves as a
-hub of information for those motivated enough
-to seek out opportunities beyond the immediate.
-It serves as a resource of education that enriches
-the classes and allows for those struggling to
-have tailored help. Through this project, the seedlings
-at this school hope to grow into towering trees.
+Democratizing education is the foremost goal of society. 
+But, democratic education also means democratizing teaching. 
+The Seedling Project utilizes the wisdom and knowledge gathered 
+by the masses (students) to create a library of high-quality 
+resources for future generations of students to benefit from. 
+We enrich our knowledge by democratizing teaching not only 
+because the resources created through the process are high-quality
+and equitable, but also because the process itself (of teaching and
+creation) develops the character of each who partakes in its fruit.
 
-The central idea differs from CommunityALI or the
-MJC site because this site is more verbose
-and focuses on a connection between the students
-and the school. As such, a "bloggy" type of model
-has been adapted into the formulation of the site.
-It will also be actively maintained by students
-and have minimal bloat and minimal bureaucratic approach.
+Each person with their own unique and diverse background, especially in 
+community colleges can contribute their experiences in education, 
+life, research, and more with other students. Who is more qualified 
+to answer unusually specific questions about education than those 
+who are actively navigating its challenges?
+
+Democratize education, improve academic outcomes, and pave the way for 
+our future scientists and engineers.
+
 
 ## Documentation Link
 
