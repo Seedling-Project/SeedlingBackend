@@ -45,3 +45,18 @@
 4. Finish connecting react and django, now frontend devs are all set up in the frontend directory
 5. Decided to discard husky and lint-staged for GitHub Actions solutions
 6. Final checks for this branch then open pr
+
+## addViteReact branch
+
+### Commands
+
+`npm create vite@latest` - create React app using Vite
+
+`npm update --save-dev` - update dependencies
+
+`npm install @vitejs/plugin-react --save-dev` - required package for vite build
+supposedly
+
+### Steps taken so far:
+
+1. Init React app using vite and testing
