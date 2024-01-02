@@ -1,0 +1,20 @@
+Color Scheme (5 colors: 2 primary, 3 accent)
+
+primary: black and white
+accent primary: #006442
+accent secondary: #c7d2fe
+accent tertiary: #7480FF which is also rgba(116, 128, 255, 0.25) (4th parameter is alpha opacity channel)
+
+-----------------------------------------------------
+
+Typography (8 fonts to rule them all)
+
+Titles: Georgia
+Sub-titles: Merriweather
+Body: Charter
+Quotes: Italicized Charter
+Captions: Arial
+Side Notes (Asides that break Content): Roboto Light
+Nav Bar: Roboto
+Sticky Notes: Comic Sans
+
