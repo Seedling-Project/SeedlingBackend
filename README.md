@@ -23,7 +23,7 @@ our future scientists and engineers.
 
 ## Documentation Link
 
-https://github.com/ImmaculateDivinity/Seedlingmkdocs.git
+https://seedling-project.github.io/Seedlingmkdocs/
 
 ## Github Contributions
 
