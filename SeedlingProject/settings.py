@@ -19,7 +19,10 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    # Apps
     "core",  # might need to specify app config i.e 'core.apps.CoreConfig'
+    # wagtail apps
+    "wagtail.api.v2",  # wagtail rest api
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -31,13 +34,19 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    # third party apps
     "taggit",
     "modelcluster",
+    # django apps
     "django.contrib.auth",
+    "django.contrib.admin",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # rest framework apps
+    "corsheaders",
+    "rest_framework",
 ]
 
 
@@ -50,9 +59,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
-ROOT_URLCONF = "myproject.urls"
+
+ROOT_URLCONF = "SeedlingProject.urls"
 
 TEMPLATES = [
     {
@@ -74,13 +86,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "SeedlingProject.wsgi.application"
 
-# Database (as of right now,)
+# Database
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "myprojectdb",
-        "USER": "postgres",
+        "NAME": "postgres",
+        "USER": "andrypaez",  # change to your username for local machine
         "PASSWORD": "",
         "HOST": "",  # Set to empty string for localhost.
         "PORT": "",  # Set to empty string for default.
@@ -105,11 +117,11 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "frontend", "dist", "assets"),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "frontend", "dist")
+STATIC_URL = "/assets/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -126,6 +138,7 @@ EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 ALLOWED_HOSTS = []
+CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "change-me"
@@ -164,7 +177,7 @@ LOGGING = {
 
 # This is the human-readable name of your Wagtail install
 # which welcomes users upon login to the Wagtail admin.
-WAGTAIL_SITE_NAME = "My Project"
+WAGTAIL_SITE_NAME = "SeedlingProject"
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
