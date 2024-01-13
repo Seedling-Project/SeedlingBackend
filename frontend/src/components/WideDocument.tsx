@@ -41,7 +41,7 @@ const WideDocument: React.FC<WideDocumentProps> = ({
             {author} - {date}
           </p>
         </div>
-        <div className="text-left">
+        <div className="text-left" style={{ whiteSpace: 'pre-wrap' }}>
           <p>{body}</p>
         </div>
       </div>
