@@ -23,6 +23,11 @@ const Navbar: React.FC = () => {
           <div className="navbar-center">
             <ul className="menu menu-horizontal p-0 space-x-1 text-xs">
               <li>
+                <a href="Transfer" className="font-bold">
+                  Transfer
+                </a>
+              </li>
+              <li>
                 <a href="Blog" className="font-bold">
                   Blog
                 </a>

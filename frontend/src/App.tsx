@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import "daisyui/dist/full.css";
 import "./App.css";
 import "./index.css";
@@ -11,8 +11,42 @@ import WideDocument from "./components/WideDocument";
 import Timeline from "./components/Timeline";
 import TimelineItem from "./components/TimelineItem";
 import Carousel from "./components/Carousel";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+
+interface DocumentData {
+  title: string;
+  subtitle: string;
+  author: string;
+  date: string;
+  body: string;
+}
 
 function App() {
+  //new axios functionality, not completely set up but this is the form
+  const [documents, setDocuments] = useState<DocumentData[]>([]); // For storing fetched documents
+  const [loading, setLoading] = useState(true); // For loading state
+
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await api.get('/documents/'); // Adjust the endpoint accordingly
+      setDocuments(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+
   // Initialize an array of image URLs
   const timelineRef = useRef<HTMLDivElement>(null); // Create a ref for the Timeline component
 
@@ -30,10 +64,25 @@ function App() {
   const items = [
     <WideDocument
       key="1"
-      title="Document Title"
-      author="John Doe"
-      date="Jan 1, 2023"
-      body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+      title="Things that you should do immediately after you come to MJC"
+      author="Kyle Zheng"
+      date="Jan 8, 2024"
+      body="
+      - Consider now whether you want to transfer to CSU, UC, or private in addition to your major because it affects class choices.
+
+      - Check out assist.org and schedule a meeting with a counselor regarding your educational plan for your transfer.
+            There are guides in the blog section on how to navigate assist.org and schedule a counselor meeting.
+
+      - There are guides for the activities list and essays for UCs and Privates in the Blog section.
+
+      - Do you want to do research? Yes, first years are allowed to do it through REUs and Honors.
+            This is discussed in greater detail in Research Opportunities above.
+
+      - Do you want to participate in clubs or start a new organization at MJC? You can, it looks great on resumes.
+            This is discussed in Miscellaneous Opportunities above.
+
+      - Do you need additional help for calculus, physics, or some other difficult class? Check out the Curriculum section.
+      "
     />,
     <WideDocument
       key="2"
@@ -134,6 +183,23 @@ function App() {
           angle={1}
         />
         {/* ... more notes */}
+
+<div className="documents-container">
+          {loading ? (
+        <p>Loading documents...</p>
+      ) : (
+        documents.map((doc, index) => (
+          <Document
+            key={index}
+            title={doc.title}
+            subtitle={doc.subtitle}
+            author={doc.author}
+            date={doc.date}
+            body={doc.body}
+          />
+        ))
+      )}
+        </div>
       </div>
       <Footer />
     </>
