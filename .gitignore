@@ -20,12 +20,15 @@ __pycache__/
 .venv/
 .env/
 /.env
+/SeedlingProject/.env
 
 # Django
 *.log
 *.pot
 *.pyc
 **/__pycache__
+# all pycache should be ignored
+**/__pycache__/**
 
 # *media
 *.DS_Store
