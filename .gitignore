@@ -27,6 +27,8 @@ __pycache__/
 *.pot
 *.pyc
 **/__pycache__
+# all pycache should be ignored
+**/__pycache__/**
 
 # *media
 *.DS_Store
