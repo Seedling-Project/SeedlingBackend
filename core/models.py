@@ -5,6 +5,7 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
+from wagtail.api import APIField
 
 class StandardPage(Page):
     subtitle = models.CharField(max_length=250)
@@ -17,4 +18,9 @@ class StandardPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('subtitle'),
         FieldPanel('body'),
+    ]
+
+    api_fields = [
+        'subtitle',
+        'body',
     ]

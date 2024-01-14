@@ -14,7 +14,7 @@ import Carousel from "./components/Carousel";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://some-domain.com/api/',
+  baseURL: 'http://127.0.0.1:8000/api',
   timeout: 1000,
   headers: {'X-Custom-Header': 'foobar'}
 });
@@ -33,9 +33,11 @@ function App() {
   const [loading, setLoading] = useState(true); // For loading state
 
   useEffect(() => {
+  console.log('Fetching data...');
   const fetchData = async () => {
     try {
-      const response = await api.get('/documents/'); // Adjust the endpoint accordingly
+      const response = await api.get('/standard/'); 
+      console.log(response.data);
       setDocuments(response.data);
       setLoading(false);
     } catch (error) {

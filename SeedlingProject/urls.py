@@ -25,10 +25,18 @@ from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
+from rest_framework.routers import DefaultRouter
+from core.api.views import StandardViewSet
+
+router = DefaultRouter()
+router.register(r"standard", StandardViewSet, basename="standard")
+
+print(router.urls)
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path("api/", include(router.urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     re_path(r"", include(wagtail_urls)),
