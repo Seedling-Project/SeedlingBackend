@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+
 import environ
 
 env = environ.Env()
@@ -105,12 +106,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "SeedlingProject.wsgi.application"
 
 # Database
-DATABASES = { # get user and password from env variables
+DATABASES = {  # get user and password from env variables
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": env('DB_USER'),
-        "PASSWORD": env('DB_PASSWORD'),
+        "NAME": env('DB_NAME'),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
         "HOST": "",  # Set to empty string for localhost.
         "PORT": "",  # Set to empty string for default.
         "CONN_MAX_AGE": 600,  # number of seconds database connections should persist for
