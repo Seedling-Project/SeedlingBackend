@@ -27,9 +27,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from rest_framework.routers import DefaultRouter
 from core.api.views import StandardViewSet
+from core.api.views import DocumentViewSet
 
 router = DefaultRouter()
 router.register(r"standard", StandardViewSet, basename="standard")
+router.register(r"document", DocumentViewSet, basename="document")
 
 print(router.urls)
 urlpatterns = [
