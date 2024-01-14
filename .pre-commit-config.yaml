@@ -9,8 +9,9 @@ repos:
   - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.9.1
     hooks:
-      - id: black
-        language_version: python3.10
+      - id: black 
+      # the version specified in the .env file or python3.10
+        language_version: system
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
