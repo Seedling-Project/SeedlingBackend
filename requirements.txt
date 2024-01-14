@@ -13,7 +13,7 @@ decorator==5.1.1
 defusedxml==0.7.1
 dill==0.3.7
 distlib==0.3.8
-Django==5.0.1
+Django==4.2.9
 django-cors-headers==4.3.1
 django-filter==23.5
 django-modelcluster==6.1
