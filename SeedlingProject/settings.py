@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     # Apps
     "core",  # might need to specify app config i.e 'core.apps.CoreConfig'
     # wagtail apps
-    "wagtail.api.v2",  # wagtail rest api
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -52,6 +51,7 @@ INSTALLED_APPS = [
     # rest framework apps
     "corsheaders",
     "rest_framework",
+    "wagtail.api.v2",
 ]
 
 
@@ -68,6 +68,20 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True # FIXME: for production, change to False and add frontend url
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'x-custom-header',  # Add your custom header here
+]
 
 ROOT_URLCONF = "SeedlingProject.urls"
 
@@ -95,7 +109,7 @@ WSGI_APPLICATION = "SeedlingProject.wsgi.application"
 DATABASES = {  # get user and password from env variables
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "env('DB_NAME')",
+        "NAME": env('DB_NAME'),
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),
         "HOST": "",  # Set to empty string for localhost.

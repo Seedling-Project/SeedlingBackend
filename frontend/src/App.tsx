@@ -14,7 +14,7 @@ import Carousel from "./components/Carousel";
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://some-domain.com/api/',
+  baseURL: 'http://127.0.0.1:8000/api',
   timeout: 1000,
   headers: {'X-Custom-Header': 'foobar'}
 });
@@ -33,10 +33,24 @@ function App() {
   const [loading, setLoading] = useState(true); // For loading state
 
   useEffect(() => {
+  console.log('Fetching data...');
   const fetchData = async () => {
     try {
-      const response = await api.get('/documents/'); // Adjust the endpoint accordingly
+      const response = await api.get('/document/'); 
+      console.log(response.data);
       setDocuments(response.data);
+      // add the documents to the end of the items array
+      const itemsToAdd = response.data.map((doc: DocumentData, index: number) => (
+        <Document
+          key={index}
+          title={doc.title}
+          subtitle={doc.subtitle}
+          author={doc.author}
+          date={doc.date}
+          body={doc.body}
+        />
+      ));
+      setItems((prevItems) => [...prevItems, ...itemsToAdd]);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data: ', error);
@@ -60,8 +74,7 @@ function App() {
       });
     }
   };
-
-  const items = [
+  const [items, setItems] = useState([
     <WideDocument
       key="1"
       title="Things that you should do immediately after you come to MJC"
@@ -98,9 +111,11 @@ function App() {
       author="John Doe"
       date="Jan 1, 2023"
       body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
-    />,
+    />
     // Add more items as you wish, even other components!
-  ];
+  ]);
+
+  // when the documents are set, a
   const timelineDetails = [
     {
       icon: "/team_image.png", // Replace with actual icon paths or import statements
@@ -140,13 +155,37 @@ function App() {
       content: (
         <Document
           title="Document Title"
-          subtitle="This is a subtitle"
+          subtitle="This is a subtitle as well"
           author="John Doe"
           date="Jan 1, 2023"
           body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
         />
       ),
     },
+    {
+      icon: "/team_image.png", // Replace with actual icon paths or import statements
+      content: (
+        <Document
+          title="Document Title number 2"
+          subtitle="This is a subtitle as well"
+          author="John Doe"
+          date="Jan 1, 2023"
+          body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+        />
+      ),
+    },
+    {
+      icon: "/team_image.png", // Replace with actual icon paths or import statements
+      content: (
+        <Document
+          title="Document Title"
+          subtitle="This is a subtitle as well"
+          author="John Doe"
+          date="Jan 1, 2023"
+          body="Here is some text representing the body of the document. This text can be multiple paragraphs long and contain detailed content."
+        />
+      ),
+    }
   ];
 
   return (

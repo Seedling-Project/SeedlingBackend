@@ -1,4 +1,9 @@
+// get axios
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+
 const Navbar: React.FC = () => {
+
   return (
     <div
       style={{ padding: "20px" }}
@@ -28,7 +33,11 @@ const Navbar: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="Blog" className="font-bold">
+                <a 
+                href="Blog"
+                 className="font-bold"
+                 
+                 >
                   Blog
                 </a>
               </li>
