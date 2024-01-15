@@ -14,7 +14,7 @@ import os
 import environ
 
 env = environ.Env()
-environ.Env.read_env()
+env.read_env()
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -68,19 +68,21 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True # FIXME: for production, change to False and add frontend url
+CORS_ALLOW_ALL_ORIGINS = (
+    True  # FIXME: for production, change to False and add frontend url
+)
 
 CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-    'x-custom-header',  # Add your custom header here
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "x-custom-header",  # Add your custom header here
 ]
 
 ROOT_URLCONF = "SeedlingProject.urls"
@@ -109,11 +111,11 @@ WSGI_APPLICATION = "SeedlingProject.wsgi.application"
 DATABASES = {  # get user and password from env variables
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env('DB_NAME'),
+        "NAME": env("DB_NAME"),
         "USER": env("DB_USER"),
         "PASSWORD": env("DB_PASSWORD"),
-        "HOST": "",  # Set to empty string for localhost.
-        "PORT": "",  # Set to empty string for default.
+        "HOST": env("DB_HOST"),  # Set to empty string for localhost.
+        "PORT": env("DB_PORT"),  # Set to empty string for default port.
         "CONN_MAX_AGE": 600,  # number of seconds database connections should persist for
     }
 }
