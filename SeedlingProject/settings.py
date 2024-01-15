@@ -90,9 +90,7 @@ ROOT_URLCONF = "SeedlingProject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            os.path.join(PROJECT_DIR, "frontend", "dist"),
-        ],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -128,20 +126,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-]
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend", "dist", "assets"),
-]
-
-STATIC_ROOT = os.path.join(BASE_DIR, "frontend", "dist")
-STATIC_URL = "/assets/"
+STATIC_URL = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -198,6 +183,9 @@ LOGGING = {
 # This is the human-readable name of your Wagtail install
 # which welcomes users upon login to the Wagtail admin.
 WAGTAIL_SITE_NAME = "SeedlingProject"
+
+# wagtail base url
+WAGTAILADMIN_BASE_URL = "http://localhost:8000/admin"
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
