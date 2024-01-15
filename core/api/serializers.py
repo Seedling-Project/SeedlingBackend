@@ -2,7 +2,7 @@
 # opt to omit the modelserializer in the future for more fine tuning
 from rest_framework import serializers as serial
 
-# import all the models from two directories up
+# import all the models from models.py two directories up
 from ..models import *
 
 
