@@ -31,6 +31,7 @@ filetype==1.2.0
 flake8==6.1.0
 future==0.18.3
 geocoder==1.38.1
+gunicorn==21.2.0
 html-tag-names==0.1.2
 html-void-elements==0.1.0
 html5lib==1.1
