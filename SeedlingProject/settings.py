@@ -142,7 +142,7 @@ MANAGERS = ADMINS
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["seedlingproject-production.up.railway.app"]
 CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
 # Make this unique, and don't share it with anybody.
