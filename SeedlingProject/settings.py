@@ -143,8 +143,13 @@ MANAGERS = ADMINS
 # as per https://docs.djangoproject.com/en/stable/topics/email/#email-backends
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
-# CSRF origin whitelist
-CSRF_TRUSTED_ORIGINS = ["*"]
+# CSRF origin whitelist (https and http accounted for)
+CSRF_TRUSTED_ORIGINS = [
+    "https://seedlingfrontend-production.up.railway.app",
+    "http://seedlingfrontend-production.up.railway.app",
+    "https://seedlingbackend-production.up.railway.app",
+    "http://seedlingbackend-production.up.railway.app",
+]
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 ALLOWED_HOSTS = [
