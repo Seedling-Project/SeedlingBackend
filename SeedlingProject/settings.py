@@ -134,6 +134,8 @@ MEDIA_URL = "/media/"
 
 ADMINS = [
     # ('Your Name', 'your_email@example.com'),
+    ("seedling", "andry965255@my.yosemite.edu"),
+    ("admin", "kyle996032@my.yosemite.edu"),
 ]
 MANAGERS = ADMINS
 
@@ -142,7 +144,10 @@ MANAGERS = ADMINS
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "https://seedlingfrontend-production.up.railway.app/",
+    "https://seedlingbackend-production.up.railway.app/",
+]
 CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
 # Make this unique, and don't share it with anybody.
@@ -185,7 +190,7 @@ LOGGING = {
 WAGTAIL_SITE_NAME = "SeedlingProject"
 
 # wagtail base url
-WAGTAILADMIN_BASE_URL = "http://localhost:8000/admin"
+WAGTAILADMIN_BASE_URL = "https://seedlingbackend-production.up.railway.app/admin"
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
