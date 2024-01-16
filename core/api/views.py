@@ -3,16 +3,14 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from core.models import *
-
+from ..models import *
 from .serializers import *
 
-
-class StandardViewSet(viewsets.ModelViewSet):
-    queryset = StandardPage.objects.all()
-    serializer_class = StandardPageSerializer
-    permission_classes = []
-    authentication_classes = []
+# class StandardViewSet(viewsets.ModelViewSet):
+#     queryset = StandardPage.objects.all()
+#     serializer_class = StandardPageSerializer
+#     permission_classes = []
+#     authentication_classes = []
 
 
 class DocumentViewSet(viewsets.ModelViewSet):

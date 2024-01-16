@@ -5,35 +5,40 @@ from rest_framework import serializers as serial
 # import all the models from models.py two directories up
 from ..models import *
 
-
-class StandardPageSerializer(serial.ModelSerializer):
-    class Meta:
-        model = StandardPage
-        fields = [
-            "title",
-            "subtitle",
-            "body",
-            "content_panels",
-        ]
+# class StandardPageSerializer(serial.ModelSerializer):
+#     class Meta:
+#         model = StandardPage
+#         fields = [
+#             "title",
+#             "subtitle",
+#             "body",
+#             "content_panels",
+#         ]
 
 
 class DocumentSerializer(serial.ModelSerializer):
     class Meta:
-        model = documentPage
-        fields = ["title", "subtitle", "author", "date", "body"]
-
-
-class BlogSerializer(serial.ModelSerializer):
-    class Meta:
-        model = BlogPage
+        model = DocumentPage
         fields = [
             "title",
+            "subtitle",
+            "author",
+            "date",
             "body",
-            "image",  # if needed
-            "date_published",
-            "author",  # string field for MVP, user id for future
-            "slug",  # SlugField for generating valid URL
         ]
+
+
+# class BlogSerializer(serial.ModelSerializer):
+#     class Meta:
+#         model = BlogPage
+#         fields = [
+#             "title",
+#             "body",
+#             "image",  # if needed
+#             "date_published",
+#             "author",  # string field for MVP, user id for future
+#             "slug",  # SlugField for generating valid URL
+#         ]
 
 
 # for the future implementation of Users
