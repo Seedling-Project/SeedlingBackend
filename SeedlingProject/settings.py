@@ -151,6 +151,12 @@ CSRF_TRUSTED_ORIGINS = [
     "http://seedlingbackend-production.up.railway.app",
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ]
+}
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 ALLOWED_HOSTS = [
     "seedlingfrontend-production.up.railway.app",

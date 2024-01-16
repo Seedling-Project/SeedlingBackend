@@ -1,6 +1,7 @@
 from django.shortcuts import render  # might need down the line
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from core.models import *
 
@@ -13,18 +14,23 @@ class StandardViewSet(viewsets.ModelViewSet):
     permission_classes = []
     authentication_classes = []
 
-    # 'get' function prototype
-    def get(self, request):
-        # assign necessary fields to a variable
-        # return a Response object with the output variable as the arg
-        pass
-
-    def post(self, request):
-        pass
-
 
 class DocumentViewSet(viewsets.ModelViewSet):
-    queryset = documentPage.objects.all()
+    queryset = DocumentPage.objects.all()
     serializer_class = DocumentSerializer
     permission_classes = []
     authentication_classes = []
+
+    # 'get' function prototype
+    def get(self, request):
+        try:
+            if request:
+                return Response({"message": "Hello, world!"})
+        except:
+            print("no request")
+        # assign necessary fields to a variable
+        output = [""]
+        # return a Response object with the output variable as the arg
+
+    def post(self, request):
+        pass
