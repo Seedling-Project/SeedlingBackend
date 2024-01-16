@@ -145,8 +145,8 @@ EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 ALLOWED_HOSTS = [
-    "https://seedlingfrontend-production.up.railway.app/",
-    "https://seedlingbackend-production.up.railway.app/",
+    "seedlingfrontend-production.up.railway.app",
+    "seedlingbackend-production.up.railway.app",
 ]
 CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
