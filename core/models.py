@@ -3,6 +3,7 @@ from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
 from wagtail.documents.blocks import DocumentChooserBlock
+from wagtail.documents.edit_handlers import DocumentChooserPanel
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -42,6 +43,13 @@ class DocumentPage(Page):
         ],
         use_json_field=True,
     )
+    related_document = models.ForeignKey(
+        "wagtaildocs.Document",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("title"),
@@ -49,6 +57,7 @@ class DocumentPage(Page):
         FieldPanel("author"),
         FieldPanel("date"),
         FieldPanel("body"),
+        DocumentChooserPanel("document"),
     ]
 
     api_fields = [
