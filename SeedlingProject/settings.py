@@ -161,6 +161,7 @@ REST_FRAMEWORK = {
 ALLOWED_HOSTS = [
     "seedlingfrontend-production.up.railway.app",
     "seedlingbackend-production.up.railway.app",
+    "127.0.0.1",
 ]
 CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
@@ -205,6 +206,9 @@ WAGTAIL_SITE_NAME = "SeedlingProject"
 
 # wagtail base url
 WAGTAILADMIN_BASE_URL = "https://seedlingbackend-production.up.railway.app/admin"
+
+# Override the search results template for wagtail search
+WAGTAILDOCS_SERVE_METHOD = "direct"
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
