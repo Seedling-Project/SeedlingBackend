@@ -8,6 +8,8 @@ from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 
+from SeedlingProject.storage_backends import PrivateMediaStorage
+
 
 class DocumentPage(Page):
     subtitle = models.CharField(max_length=250)
@@ -38,3 +40,11 @@ class DocumentPage(Page):
         "date",
         "body",
     ]
+
+
+class FileModel(models.Model):
+    # other fields
+    # ...
+    file = models.FileField(storage=PrivateMediaStorage())
+    # other fields
+    # ...
