@@ -14,8 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import os.path
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -31,7 +29,6 @@ from core.api.views import *
 router = DefaultRouter()
 router.register(r"document", DocumentViewSet, basename="document")
 
-print(router.urls)
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
@@ -40,22 +37,18 @@ urlpatterns = [
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     re_path(r"", include(wagtail_urls)),
+    # Redirect for favicon
+    path(
+        "favicon.ico",
+        RedirectView.as_view(url=settings.STATIC_URL + "myapp/images/favicon.ico"),
+    ),
 ]
 
-
 if settings.DEBUG:
+    # Serve static files in development
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-    urlpatterns += (
-        staticfiles_urlpatterns()
-    )  # tell gunicorn where static files are in dev mode
-    urlpatterns += static(
-        settings.MEDIA_URL + "images/",
-        document_root=os.path.join(settings.MEDIA_ROOT, "images"),
-    )
-    urlpatterns += [
-        path(
-            "favicon.ico",
-            RedirectView.as_view(url=settings.STATIC_URL + "myapp/images/favicon.ico"),
-        )
-    ]
+    urlpatterns += staticfiles_urlpatterns()
+
+    # Serve media files in development
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

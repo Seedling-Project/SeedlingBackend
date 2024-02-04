@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "wagtail.api.v2",
+    # media storage apps
+    "storages",
 ]
 
 
@@ -118,6 +120,32 @@ DATABASES = {  # get user and password from env variables
     }
 }
 
+# S3 Storage Configurations
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID_DEV")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY_DEV")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+AWS_DEFAULT_ACL = None
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_LOCATION = "static"
+S3_URL = "https://%s" % AWS_S3_CUSTOM_DOMAIN
+
+# public media settings
+DEFAULT_FILE_STORAGE = "SeedlingProject.storage_backends.PublicMediaStorage"
+MEDIA_DIRECTORY = "/media/"
+MEDIA_URL = S3_URL + MEDIA_DIRECTORY
+
+# private media settings
+PRIVATE_MEDIA_LOCATION = "private"
+PRIVATE_FILE_STORAGE = "SeedlingProject.storage_backends.PrivateMediaStorage"
+
+# Link expiration time in seconds
+AWS_QUERYSTRING_EXPIRE = "3600"
+
 # Internationalization
 
 LANGUAGE_CODE = "en-us"
@@ -134,7 +162,7 @@ MEDIA_URL = "/media/"
 
 ADMINS = [
     # ('Your Name', 'your_email@example.com'),
-    ("seedling", "andry965255@my.yosemite.edu"),
+    ("seedling", "andry965255@my.yosemite.edu"),  # TODO: put in env variable
     ("admin", "kyle996032@my.yosemite.edu"),
 ]
 MANAGERS = ADMINS
@@ -144,6 +172,7 @@ MANAGERS = ADMINS
 EMAIL_BACKEND = "django.core.mail.backends.dummy.EmailBackend"
 
 # CSRF origin whitelist (https and http accounted for)
+# TODO: need to put in environment variables
 CSRF_TRUSTED_ORIGINS = [
     "https://seedlingfrontend-production.up.railway.app",
     "http://seedlingfrontend-production.up.railway.app",
@@ -158,9 +187,11 @@ REST_FRAMEWORK = {
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
+# TODO: Put in environment variables FRONTEND_URL and BACKEND_URL
 ALLOWED_HOSTS = [
     "seedlingfrontend-production.up.railway.app",
     "seedlingbackend-production.up.railway.app",
+    "127.0.0.1",
 ]
 CORS_ORIGIN_ALLOW_ALL = True  # for development mode only
 
@@ -205,6 +236,9 @@ WAGTAIL_SITE_NAME = "SeedlingProject"
 
 # wagtail base url
 WAGTAILADMIN_BASE_URL = "https://seedlingbackend-production.up.railway.app/admin"
+
+# Override the search results template for wagtail search
+WAGTAILDOCS_SERVE_METHOD = "direct"
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
