@@ -86,6 +86,7 @@ virtualenv = "==20.25.0"
 wagtail = "==5.2.2"
 webencodings = "==0.5.1"
 willow = "==1.6.3"
+django-storages = "*"
 
 [dev-packages]
 
