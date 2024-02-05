@@ -87,6 +87,7 @@ wagtail = "==5.2.2"
 webencodings = "==0.5.1"
 willow = "==1.6.3"
 django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 django-storages = "*"
