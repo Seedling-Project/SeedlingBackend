@@ -11,7 +11,7 @@ from wagtail.models import Page
 from SeedlingProject.storage_backends import PrivateMediaStorage
 
 
-class DocumentPage(Page):
+class ContentBlock(Page):
     subtitle = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     date = models.DateField("Post date")
