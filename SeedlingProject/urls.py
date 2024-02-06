@@ -26,6 +26,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from core.api.views import *
 
+from .api import api_router
+
+# Existing router for custom endpoints
 router = DefaultRouter()
 router.register(r"document", DocumentViewSet, basename="document")
 
@@ -33,7 +36,9 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path("api/", include(router.urls)),
+    path("api/", include(router.urls)),  # Your custom API
+    # Add Wagtail API to the URL patterns
+    path("api/v2/", api_router.urls),  # Wagtail API v2
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     re_path(r"", include(wagtail_urls)),
