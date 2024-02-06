@@ -6,16 +6,10 @@ from rest_framework.views import APIView
 from ..models import *
 from .serializers import *
 
-# class StandardViewSet(viewsets.ModelViewSet):
-#     queryset = StandardPage.objects.all()
-#     serializer_class = StandardPageSerializer
-#     permission_classes = []
-#     authentication_classes = []
-
 
 class DocumentViewSet(viewsets.ModelViewSet):
-    queryset = DocumentPage.objects.all()
-    serializer_class = DocumentSerializer
+    queryset = ContentBlock.objects.all()
+    serializer_class = ContentBlockSerializer
     permission_classes = []
     authentication_classes = []
 
