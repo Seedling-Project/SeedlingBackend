@@ -34,11 +34,11 @@ class ContentBlock(Page):
     ]
 
     api_fields = [
-        "title",
-        "subtitle",
-        "author",
-        "date",
-        "body",
+        APIField("title"),
+        APIField("subtitle"),
+        APIField("author"),
+        APIField("date"),
+        APIField("body"),
     ]
 
 
