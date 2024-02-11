@@ -1,59 +1,108 @@
 # reference https://www.django-rest-framework.org/api-guide/serializers/#modelserializer
 # opt to omit the modelserializer in the future for more fine tuning
+from django.core.exceptions import ObjectDoesNotExist
+from rest_framework import serializers
+from rest_framework.fields import Field
+from rest_framework.serializers import Serializer, SerializerMethodField
+from wagtail.documents.models import Document
+from wagtail.images.models import Image
 
 # import all the models from models.py two directories up
 from ..models import *
 
-from wagtail.core.models import Page
-from wagtail.images.models import Image
-from wagtail.documents.models import Document
-from rest_framework import serializers
 
-class CustomPageSerializer(serializers.ModelSerializer):
-    body = serializers.SerializerMethodField()
+# Assuming your Document model has a StreamField named 'body'
+class StreamFieldBlockSerializer(Serializer):
+    # This field will dynamically serialize each block based on its type
+    blocks = SerializerMethodField()
 
-    class Meta:
-        model = Page
-        fields = ['title', 'subtitle', 'author', 'date', 'body']
+    def get_blocks(self, instance):
+        serialized_blocks = []
+        for (
+            block
+        ) in (
+            instance.body
+        ):  # Adjust 'instance.body' as needed based on your model's field name
+            if block.block_type == "document":
+                serialized_blocks.append(
+                    {
+                        "type": block.block_type,
+                        "value": DocumentChooserBlockSerializer().to_representation(
+                            block.value
+                        ),
+                    }
+                )
+            elif block.block_type == "image":
+                serialized_blocks.append(
+                    {
+                        "type": block.block_type,
+                        "value": ImageChooserBlockSerializer().to_representation(
+                            block.value
+                        ),
+                    }
+                )
+            # Add more conditions for other block types as needed
+        return serialized_blocks
 
+
+# Update your DocumentPageSerializer to use StreamFieldBlockSerializer for the 'body' field
+class ContentBlockSerializer(serializers.ModelSerializer):
+    body = StreamFieldBlockSerializer(
+        source="*", required=False
+    )  # Use 'source="*"' to pass the whole instance
     def get_body(self, instance):
-        result = []
-        for block in instance.body:  # This accesses StreamField data
-            block_data = self.serialize_block(block)
-            result.append(block_data)
-        return result
+        # Example logic to handle StreamField serialization
+        serialized_blocks = []
+        for block in instance.body:  # Assuming 'instance.body' refers to the StreamField
+            if block.block_type == 'document':
+                # Directly use your DocumentChooserBlockSerializer here
+                serializer = DocumentChooserBlockSerializer()
+                serialized_block = serializer.to_representation(block.value)
+                serialized_blocks.append({
+                    "type": block.block_type,
+                    "value": serialized_block,  # This now includes the URL
+                })
+            # Handle other block types accordingly
+        return serialized_blocks
+    class Meta:
+        model = ContentBlock
+        fields = [
+            "title",
+            "subtitle",
+            "author",
+            "date",
+            "body",
+        ]
 
-    def serialize_block(self, block):
-        if block.block_type == 'document':
-            document_data = self.get_document_data(block.value)
-            return {'type': 'document', 'value': document_data}
-        elif block.block_type == 'image':
-            image_data = self.get_image_data(block.value)
-            return {'type': 'image', 'value': image_data}
-        else:
-            # Default handling for other block types
-            return {'type': block.block_type, 'value': block.value}
 
-    def get_document_data(self, doc_id):
+class DocumentChooserBlockSerializer(Field):
+    def to_representation(self, value):
+        # Assuming `value` is an ID or similar identifier of a Document
         try:
-            document = Document.objects.get(id=doc_id)
+            document = Document.objects.get(id=value)
             return {
-                'id': document.id,
-                'title': document.title,
-                'url': document.file.url,
+                "id": document.id,
+                "title": document.title,
+                "url": document.file.url,  # This gives the URL to the actual document file
             }
-        except Document.DoesNotExist:
-            return {'error': 'Document not found'}
+        except ObjectDoesNotExist:
+            # Handle the case where the Document does not exist
+            print("Document does not exist")
+            return None
 
-    def get_image_data(self, img_id):
+
+# Serializer for individual Images within a StreamField or similar
+class ImageChooserBlockSerializer(Field):
+    def to_representation(self, value):
         try:
-            image = Image.objects.get(id=img_id)
-            # Here, you might want to use a specific rendition for the image URL
-            rendition = image.get_rendition('fill-800x600')  # Adjust the filter spec as needed
+            image = Image.objects.get(id=value)
+            # Assuming you're using Wagtail's built-in Image model, which uses renditions for URLs
+            # Adjust this to match how you want to expose image URLs (e.g., specific rendition)
+            image_url = image.get_rendition("fill-800x600").url
             return {
-                'id': image.id,
-                'title': image.title,
-                'url': rendition.url,
+                "id": image.id,
+                "title": image.title,
+                "url": image_url,  # URL to the actual image, potentially with a specific rendition
             }
-        except Image.DoesNotExist:
-            return {'error': 'Image not found'}
+        except ObjectDoesNotExist:
+            return None
