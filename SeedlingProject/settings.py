@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 import os
 
 import environ
@@ -237,8 +238,14 @@ WAGTAIL_SITE_NAME = "SeedlingProject"
 # wagtail base url
 WAGTAILADMIN_BASE_URL = "https://seedlingbackend-production.up.railway.app/admin"
 
+# wagtail api base url
+WAGTAILAPI_BASE_URL = "https://seedlingbackend-production.up.railway.app"
+
 # Override the search results template for wagtail search
 WAGTAILDOCS_SERVE_METHOD = "direct"
+
+# Override the search results template for wagtail search
+WAGTAIL_RECENT_EDITS_LIMIT = 5
 
 # Replace the search backend
 # WAGTAILSEARCH_BACKENDS = {
