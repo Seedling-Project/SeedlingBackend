@@ -11,23 +11,6 @@ from wagtail.images.models import Image
 from ..models import *
 
 
-# Update your DocumentPageSerializer to use StreamFieldBlockSerializer for the 'body' field
-class ContentBlockSerializer(serializers.ModelSerializer):
-    body = StreamFieldBlockSerializer(
-        source="*", required=False
-    )  # Use 'source="*"' to pass the whole instance
-
-    class Meta:
-        model = ContentBlock
-        fields = [
-            "title",
-            "subtitle",
-            "author",
-            "date",
-            "body",
-        ]
-
-
 # Assuming your Document model has a StreamField named 'body'
 class StreamFieldBlockSerializer(Serializer):
     # This field will dynamically serialize each block based on its type
@@ -60,6 +43,23 @@ class StreamFieldBlockSerializer(Serializer):
                 )
             # Add more conditions for other block types as needed
         return serialized_blocks
+
+
+# Update your DocumentPageSerializer to use StreamFieldBlockSerializer for the 'body' field
+class ContentBlockSerializer(serializers.ModelSerializer):
+    body = StreamFieldBlockSerializer(
+        source="*", required=False
+    )  # Use 'source="*"' to pass the whole instance
+
+    class Meta:
+        model = ContentBlock
+        fields = [
+            "title",
+            "subtitle",
+            "author",
+            "date",
+            "body",
+        ]
 
 
 class DocumentChooserBlockSerializer(Field):
