@@ -12,53 +12,33 @@ from ..models import *
 
 
 # Assuming your Document model has a StreamField named 'body'
-class StreamFieldBlockSerializer(Serializer):
-    # This field will dynamically serialize each block based on its type
-    blocks = SerializerMethodField()
-
-    def get_blocks(self, instance):
-        serialized_blocks = []
-        for (
-            block
-        ) in (
-            instance.body
-        ):  # Adjust 'instance.body' as needed based on your model's field name
-            if block.block_type == "document":
-                serialized_blocks.append(
-                    {
-                        "type": block.block_type,
-                        "value": DocumentChooserBlockSerializer().to_representation(
-                            block.value
-                        ),
-                    }
-                )
-            elif block.block_type == "image":
-                serialized_blocks.append(
-                    {
-                        "type": block.block_type,
-                        "value": ImageChooserBlockSerializer().to_representation(
-                            block.value
-                        ),
-                    }
-                )
-            # Add more conditions for other block types as needed
-        return serialized_blocks
-
 
 # Update your DocumentPageSerializer to use StreamFieldBlockSerializer for the 'body' field
 class ContentBlockSerializer(serializers.ModelSerializer):
-    body = StreamFieldBlockSerializer(
-        source="*", required=False
-    )  # Use 'source="*"' to pass the whole instance
+    body = SerializerMethodField()
+
+    def get_body(self, instance):
+        serialized_blocks = []
+        for block in instance.body:  # instance.body is the StreamField
+            block_type = block.block_type
+            block_value = block.value
+            if block_type == "document":
+                serialized_block = DocumentChooserBlockSerializer().to_representation(block_value)
+            elif block_type == "image":
+                serialized_block = ImageChooserBlockSerializer().to_representation(block_value)
+            # Handle other block types (e.g., 'paragraph', 'embed') as needed
+            else:
+                serialized_block = None  # or appropriate serialization for other types
+            if serialized_block is not None:
+                serialized_blocks.append({
+                    "type": block_type,
+                    "value": serialized_block,
+                })
+        return serialized_blocks
+
     class Meta:
         model = ContentBlock
-        fields = [
-            "title",
-            "subtitle",
-            "author",
-            "date",
-            "body",
-        ]
+        fields = ["title", "subtitle", "author", "date", "body"]
 
 
 class DocumentChooserBlockSerializer(Field):
