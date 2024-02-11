@@ -1,5 +1,3 @@
-[![GitHub Super-Linter](https://github.com/ImmaculateDivinity/SeedlingEducation/actions/workflows/superlinter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
-
 # SeedlingEducation
 
 Democratizing education is the foremost goal of society.
