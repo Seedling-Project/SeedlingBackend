@@ -17,28 +17,40 @@ from ..models import *
 class ContentBlockSerializer(serializers.ModelSerializer):
     body = SerializerMethodField()
 
-    def get_body(self, instance):
-        serialized_blocks = []
-        for block in instance.body:  # instance.body is the StreamField
+    def get_body(self, obj):
+        # Custom logic to serialize StreamField content
+        result = []
+        for block in obj.body:  # obj.body accesses the StreamField data
             block_type = block.block_type
             block_value = block.value
-            if block_type == "document":
-                serialized_block = DocumentChooserBlockSerializer().to_representation(block_value)
-            elif block_type == "image":
-                serialized_block = ImageChooserBlockSerializer().to_representation(block_value)
-            # Handle other block types (e.g., 'paragraph', 'embed') as needed
+            if block_type == 'document':
+                # Apply custom serialization for a document block
+                serialized_data = self.serialize_document_block(block_value)
+            elif block_type == 'image':
+                # Similarly for an image block
+                serialized_data = self.serialize_image_block(block_value)
             else:
-                serialized_block = None  # or appropriate serialization for other types
-            if serialized_block is not None:
-                serialized_blocks.append({
-                    "type": block_type,
-                    "value": serialized_block,
-                })
-        return serialized_blocks
+                # Handle other types or provide a default serialization
+                serialized_data = {'type': block_type, 'value': block_value}
+            result.append(serialized_data)
+        return result
+
+    def serialize_document_block(self, value):
+        # Example: Fetch document by ID and serialize including URL
+        document = Document.objects.get(id=value)
+        return {
+            'type': 'document',
+            'id': document.id,
+            'title': document.title,
+            'url': document.file.url,
+        }
+
+    # Similar method for `serialize_image_block`
 
     class Meta:
         model = ContentBlock
-        fields = ["title", "subtitle", "author", "date", "body"]
+        fields = ['title', 'subtitle', 'author', 'date', 'body']
+
 
 
 class DocumentChooserBlockSerializer(Field):
