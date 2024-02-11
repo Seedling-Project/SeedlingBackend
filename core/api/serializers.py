@@ -4,17 +4,49 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import serializers
 from rest_framework.fields import Field
 from rest_framework.serializers import Serializer, SerializerMethodField
+from wagtail.api.v2.serializers import PageSerializer
 from wagtail.documents.models import Document
 from wagtail.images.models import Image
 
 # import all the models from models.py two directories up
 from ..models import *
 
+class CustomPageSerializer(PageSerializer):
+    body = serializers.SerializerMethodField()
 
-# Assuming your Document model has a StreamField named 'body'
-
-# Update your DocumentPageSerializer to use StreamFieldBlockSerializer for the 'body' field
-class ContentBlockSerializer(serializers.ModelSerializer):
+    def get_body(self, obj):
+        # Serialize the StreamField data here, resolving document and image references
+        # This is a simplified example; adapt it to your actual StreamField structure
+        result = []
+        for block in obj.body:  # Assuming 'obj.body' is your StreamField
+            if block.block_type == 'document':
+                # Fetch and serialize the document
+                doc_id = block.value
+                document = Document.objects.get(id=doc_id)
+                block_data = {
+                    'type': block.block_type,
+                    'id': doc_id,
+                    'title': document.title,
+                    'url': document.file.url,  # Or use a method to get the full URL
+                }
+            elif block.block_type == 'image':
+                # Fetch and serialize the image
+                img_id = block.value
+                image = Image.objects.get(id=img_id)
+                block_data = {
+                    'type': block.block_type,
+                    'id': img_id,
+                    'title': image.title,
+                    'url': image.file.url,  # Adjust according to how you store/access images
+                }
+            else:
+                block_data = {
+                    'type': block.block_type,
+                    'value': block.value,
+                }
+            result.append(block_data)
+        return result
+class ContentBlockSerializer(PageSerializer):
     body = SerializerMethodField()
 
     def get_body(self, obj):
