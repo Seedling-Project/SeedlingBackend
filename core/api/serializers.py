@@ -50,20 +50,6 @@ class ContentBlockSerializer(serializers.ModelSerializer):
     body = StreamFieldBlockSerializer(
         source="*", required=False
     )  # Use 'source="*"' to pass the whole instance
-    def get_body(self, instance):
-        # Example logic to handle StreamField serialization
-        serialized_blocks = []
-        for block in instance.body:  # Assuming 'instance.body' refers to the StreamField
-            if block.block_type == 'document':
-                # Directly use your DocumentChooserBlockSerializer here
-                serializer = DocumentChooserBlockSerializer()
-                serialized_block = serializer.to_representation(block.value)
-                serialized_blocks.append({
-                    "type": block.block_type,
-                    "value": serialized_block,  # This now includes the URL
-                })
-            # Handle other block types accordingly
-        return serialized_blocks
     class Meta:
         model = ContentBlock
         fields = [
