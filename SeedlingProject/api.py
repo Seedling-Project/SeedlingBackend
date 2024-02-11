@@ -15,6 +15,6 @@ api_router = WagtailAPIRouter("wagtailapi")
 # The first parameter is the name of the endpoint (such as pages, images). This
 # is used in the URL of the endpoint
 # The second parameter is the endpoint class that handles the requests
-api_router.register_endpoint("pages", CustomPagesAPIViewSet)
+api_router.register_endpoint("pages", PagesAPIViewSet)
 api_router.register_endpoint("images", ImagesAPIViewSet)
 api_router.register_endpoint("documents", DocumentsAPIViewSet)
