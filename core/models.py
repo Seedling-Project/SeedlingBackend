@@ -7,11 +7,12 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
+from rest_framework.fields import SerializerMethodField
 
 from SeedlingProject.storage_backends import PrivateMediaStorage
 
-
 class ContentBlock(Page):
+
     subtitle = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     date = models.DateField("Post date")
@@ -33,12 +34,18 @@ class ContentBlock(Page):
         FieldPanel("body"),
     ]
 
+    def get_child_pages(self):
+        # Fetch child pages, you can adjust the fields as per your requirement
+        children = self.get_children().live().values('id', 'title', 'url_path')
+        return list(children)
+
     api_fields = [
         APIField("title"),
         APIField("subtitle"),
         APIField("author"),
         APIField("date"),
         APIField("body"),
+        APIField('child_pages', serializer=SerializerMethodField(method_name='get_child_pages')),
     ]
 
 
