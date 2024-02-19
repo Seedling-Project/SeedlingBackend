@@ -12,7 +12,7 @@ from SeedlingProject.storage_backends import PrivateMediaStorage
 
 class ContentBlock(Page):
 
-    subtitle = models.CharField(max_length=250)
+    tag = models.CharField(max_length=250)
     author = models.CharField(max_length=250)
     date = models.DateField("Post date")
     body = StreamField(
@@ -27,7 +27,7 @@ class ContentBlock(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("title"),
-        FieldPanel("subtitle"),
+        FieldPanel("tag"),
         FieldPanel("author"),
         FieldPanel("date"),
         FieldPanel("body"),
@@ -37,7 +37,7 @@ class ContentBlock(Page):
 
     api_fields = [
         APIField("title"),
-        APIField("subtitle"),
+        APIField("tagg"),
         APIField("author"),
         APIField("date"),
         APIField("body"),
