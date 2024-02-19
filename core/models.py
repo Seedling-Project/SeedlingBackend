@@ -33,9 +33,7 @@ class ContentBlock(Page):
         FieldPanel("body"),
     ]
 
-    def get_child_pages_data(self):
-        children = self.get_children().live().values('id', 'title', 'url_path')
-        return list(children)
+
 
     api_fields = [
         APIField("title"),
@@ -43,7 +41,6 @@ class ContentBlock(Page):
         APIField("author"),
         APIField("date"),
         APIField("body"),
-        APIField('child_pages', get_child_pages_data),
     ]
 
 
