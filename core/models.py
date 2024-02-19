@@ -37,7 +37,7 @@ class ContentBlock(Page):
 
     api_fields = [
         APIField("title"),
-        APIField("tagg"),
+        APIField("tag"),
         APIField("author"),
         APIField("date"),
         APIField("body"),
