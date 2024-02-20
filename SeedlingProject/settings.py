@@ -202,6 +202,7 @@ SECRET_KEY = "change-me"
 EMAIL_SUBJECT_PREFIX = "[Wagtail] "
 
 INTERNAL_IPS = ("127.0.0.1", "10.0.2.2")
+WAGTAILAPI_LIMIT_MAX = 1000
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
